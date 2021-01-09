@@ -5,5 +5,5 @@ A CLI client for interacting with the [YNAB](https://www.youneedabudget.com/) [A
 ## Usage
 
 ```sh
-ynab-api-client add-transaction --transaction <path/to/transaction.json> --token <path/to/bearer_token>
+ynab-api-client -h
 ```

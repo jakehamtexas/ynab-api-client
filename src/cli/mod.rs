@@ -20,7 +20,7 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
     App::new("ynab-api-client")
         .version(version)
         .author(author)
-        .about("Provides a non-exhaustive CLI for using the YNAB API.")
+        .about("A non-exhaustive CLI for using the YNAB API.")
         .subcommand(
             SubCommand::with_name(SUB_COMMAND_ADD_TRANSACTION)
                 .about("Adds a transaction.")
