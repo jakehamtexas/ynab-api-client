@@ -11,6 +11,11 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
     let version = "1.0";
     let author = "Jake Hamilton <jakehamtexas@gmail.com";
 
+    let token_arg = Arg::with_name(ARG_NAME_TOKEN)
+        .short("t")
+        .help("The bearer token for the YNAB API.")
+        .required(true)
+        .takes_value(true);
     let budget_id_arg = Arg::with_name(ARG_NAME_BUDGET_ID)
         .short("b")
         .required(true)
@@ -26,13 +31,7 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
                 .about("Adds a transaction.")
                 .version(version)
                 .author(author)
-                .arg(
-                    Arg::with_name(ARG_NAME_TOKEN)
-                        .short("t")
-                        .help("The bearer token for the YNAB API.")
-                        .required(true)
-                        .takes_value(true),
-                )
+                .arg(&token_arg)
                 .arg(
                     Arg::with_name(ARG_NAME_TRANSACTION)
                         .short("x")
@@ -46,26 +45,32 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
             SubCommand::with_name(SUB_COMMAND_GET_BUDGETS)
                 .about("Gets names and ids for the budgets, as well as the default budget if it exists.")
                 .version(version)
-                .author(author),
+                .author(author)
+                .arg(&token_arg),
         )
         .subcommand(
             SubCommand::with_name(SUB_COMMAND_GET_ACCOUNTS)
                 .about("Gets names and ids for the accounts on a specific budget.")
                 .version(version)
-                .author(author).arg(&budget_id_arg),
+                .author(author)
+                .arg(&budget_id_arg)
+                .arg(&token_arg),
         )
         .subcommand(
             SubCommand::with_name(SUB_COMMAND_GET_CATEGORIES)
                 .about("Gets names and ids for the categories on a specific budget.")
                 .version(version)
-                .author(author).arg(&budget_id_arg),
+                .author(author)
+                .arg(&budget_id_arg)
+                .arg(&token_arg),
         )
         .subcommand(
             SubCommand::with_name(SUB_COMMAND_GET_PAYEES)
                 .about("Gets names and ids for the payees on a specific budget.")
                 .version(version)
                 .author(author)
-                .arg(&budget_id_arg),
+                .arg(&budget_id_arg)
+                .arg(&token_arg),
         )
         .get_matches()
 }
