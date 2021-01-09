@@ -80,8 +80,8 @@ fn get_endpoint(endpoint_base: &str, budget_id: Option<&str>) -> String {
 }
 
 fn get_url(endpoint: &str) -> Url {
-    Url::parse("https://api.youneedabudget.com/v1")
+    Url::parse("https://api.youneedabudget.com")
         .ok()
-        .and_then(|api_url_base| api_url_base.join(endpoint).ok())
+        .and_then(|api_url_base| api_url_base.join(&format!("/v1{}", endpoint)).ok())
         .expect("URL parse error.")
 }

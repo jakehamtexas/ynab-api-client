@@ -13,11 +13,13 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
 
     let token_arg = Arg::with_name(ARG_NAME_TOKEN)
         .short("t")
+        .long(ARG_NAME_TOKEN)
         .help("The bearer token for the YNAB API.")
         .required(true)
         .takes_value(true);
     let budget_id_arg = Arg::with_name(ARG_NAME_BUDGET_ID)
         .short("b")
+        .long(ARG_NAME_BUDGET_ID)
         .required(true)
         .help("The budget ID.")
         .takes_value(true);
@@ -35,6 +37,7 @@ pub fn get_program<'a>() -> ArgMatches<'a> {
                 .arg(
                     Arg::with_name(ARG_NAME_TRANSACTION)
                         .short("x")
+                        .long(ARG_NAME_TRANSACTION)
                         .help("The transaction JSON.")
                         .required(true)
                         .takes_value(true),
